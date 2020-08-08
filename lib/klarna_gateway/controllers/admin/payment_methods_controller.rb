@@ -24,7 +24,7 @@ module KlarnaGateway
 
             klarna_response = Klarna.client(:credit).create_session({})
 
-            if klarna_response.code == 401
+            if klarna_response.error?
               flash[:error] = Spree.t('klarna.invalid_api_credentials')
             else
               flash[:notice] = Spree.t('klarna.valid_api_credentials')
